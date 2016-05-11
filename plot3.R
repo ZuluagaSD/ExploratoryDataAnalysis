@@ -32,18 +32,19 @@ sumplot3d <- plot3d %>%
     group_by(year, type) %>%
     summarise(emissyear = sum(Emissions))
 
-
-qplot(sumplot3d$year, sumplot3d$emissyear, col = sumplot3d$type)
-
-ggplot(data = sumplot3d,
-       aes(x = year, y = emissyear, colour = type)) + geom_line()
-
 png("plot3.png")
+ggplot(data = sumplot3d, aes(x = year, y = emissyear,
+                             colour = type, group = type)) + 
+    geom_line(size = 1) + facet_wrap(~type)
 dev.off()
 
-## Question 2.
-## Have total emissions from PM2.5 decreased in the Baltimore City, Maryland
-## (fips == "24510") from 1999 to 2008? Use the base plotting system to make
-## a plot answering this question.
+## Question 3.
+## Of the four types of sources indicated by the type (point, nonpoint, onroad,
+## nonroad) variable, which of these four sources have seen decreases in
+## emissions from 1999-2008 for Baltimore City? Which have seen increases in
+## emissions from 1999-2008? Use the ggplot2 plotting system to make a plot
+## answer this question.
 
-## Answer: Yes, total emissions of PM2.5 in Baltimore City have decreased.
+## Answer: Three types of emissions present a decrease in this period of
+## time (NON-ROAD, NONPOINT and ON-ROAD), The POINT type emission presented an
+## increase from the year 1999 to 2005 but after 2005 it is decreasing again.
