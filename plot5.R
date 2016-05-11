@@ -27,10 +27,10 @@ scc <- tbl_df(readRDS("Source_Classification_Code.rds"))
 ## Subset the data we need, get all the sectors that contain "Coal", and filter
 ## only the ones that we need from the nei data set.
 
-coalscc <- select(filter(scc, grepl("Coal", scc$EI.Sector, 
+mobilescc <- select(filter(scc, grepl("Mobile", scc$EI.Sector, 
                                     ignore.case = TRUE)), SCC)
 
-coalscc <- as.vector(coalscc[["SCC"]])
+mobilescc <- as.vector(mobilescc[["SCC"]])
 
 plot4d <- filter(nei, SCC == coalscc)
 
