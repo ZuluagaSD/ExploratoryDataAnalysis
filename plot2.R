@@ -20,8 +20,8 @@ if (!file.exists("Source_Classification_Code.rds") |
 
 ## Load and subset the data
 ## This first line will likely take a few seconds. Be patient!
-nei <- readRDS("summarySCC_PM25.rds")
-scc <- readRDS("Source_Classification_Code.rds")
+nei <- tbl_df(readRDS("summarySCC_PM25.rds"))
+scc <- tbl_df(readRDS("Source_Classification_Code.rds"))
 
 plot2d <- tbl_df(subset(nei, fips == "24510"))
 
