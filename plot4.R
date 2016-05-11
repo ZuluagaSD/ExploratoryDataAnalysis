@@ -40,12 +40,9 @@ sumplot4d <- plot4d %>%
     group_by(year) %>%
     summarise(emissyear = sum(Emissions))
 
-qplot(sumplot4d$year, sumplot4d$emissyear)
-
-ggplot(sumplot4d, aes(year, emissyear)) + geom_line()
-ggplot(data = sumplot4d, aes(x = year, y = emissyear)) + geom_line()
-
 png("plot4.png")
+ggplot(data = sumplot4d, aes(x = year, y = emissyear)) +
+    geom_line()
 dev.off()
 
 ## Question 4. Across the United States, how have emissions from coal
