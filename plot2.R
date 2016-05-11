@@ -23,25 +23,24 @@ if (!file.exists("Source_Classification_Code.rds") |
 nei <- readRDS("summarySCC_PM25.rds")
 scc <- readRDS("Source_Classification_Code.rds")
 
-plot1d <- tbl_df(subset(nei, year == c(1999, 2002, 2005, 2008)))
-plot1d$year <- as.character(plot1d$year)
+plot2d <- tbl_df(subset(nei, fips == "24510"))
 
-sumplot1d <- plot1d %>%
-                group_by(year) %>%
-                summarise(emissyear = sum(Emissions))
+plot2d$year <- as.character(plot2d$year)
 
-## Save the plot to file called plot1.png
+sumplot2d <- plot2d %>%
+    group_by(year) %>%
+    summarise(emissyear = sum(Emissions))
 
-png("plot1.png")
-plot(sumplot1d$year, sumplot1d$emissyear, type = "l",
-     main = "Total emissions per year",
+png("plot2.png")
+plot(sumplot2d$year, sumplot2d$emissyear, type = "l",
+     main = "Baltimore City emissions per year",
      xlab = "Year",
      ylab = "Total emissions")
 dev.off()
 
-## Question 1.
-## Have total emissions from PM2.5 decreased in the United States from 1999 to
-## 2008? Using the base plotting system, make a plot showing the total PM2.5
-## emission from all sources for each of the years 1999, 2002, 2005, and 2008.
+## Question 2.
+## Have total emissions from PM2.5 decreased in the Baltimore City, Maryland
+## (fips == "24510") from 1999 to 2008? Use the base plotting system to make
+## a plot answering this question.
 
-## Answer: Yes, total emissions from PM2.5 have decreased.
+## Answer: Yes, total emissions of PM2.5 in Baltimore City have decreased.
