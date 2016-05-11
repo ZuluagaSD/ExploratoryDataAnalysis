@@ -35,7 +35,9 @@ sumplot3d <- plot3d %>%
 png("plot3.png")
 ggplot(data = sumplot3d, aes(x = year, y = emissyear,
                              colour = type, group = type)) + 
-    geom_line(size = 1) + facet_wrap(~type)
+    geom_line(size = 1) + facet_wrap(~type) +
+    xlab("Year") +
+    ylab("Emissions PM2.5")
 dev.off()
 
 ## Question 3.

@@ -29,16 +29,24 @@ scc <- tbl_df(readRDS("Source_Classification_Code.rds"))
 
 nei$SCC <- as.factor(nei$SCC)
 
-plot5d <- subset(nei, fips == 24510 & type == 'ON-ROAD')
+plot6d.balt <- subset(nei, fips == 24510 & type == 'ON-ROAD')
 
-plot5d$year <- as.factor(plot5d$year)
-sumplot5d <- plot5d %>%
+plot6d.la <- subset(nei, fips == 24510 & type == 'ON-ROAD')
+
+plot6d.balt$year <- as.factor(plot6d.balt$year)
+sumplot6d.balt <- plot6d.balt %>%
+    group_by(year) %>%
+    summarise(emissyear = sum(Emissions))
+
+plot6d.la$year <- as.factor(plot6d.la$year)
+sumplot6d.la <- plot6d.la %>%
     group_by(year) %>%
     summarise(emissyear = sum(Emissions))
 
 png("plot5.png")
-ggplot(sumplot5d, aes(x = year, y = emissyear)) +
-    geom_bar(stat = "identity") +
+ggplot(sumplot6d.balt) +
+    geom_line(aes(sumplot6d.balt$year, sumplot6d.balt$emissyear)) +
+    geom_line(aes(sumplot6d.balt$year, sumplot6d.balt$emissyear)) +
     xlab("Year") +
     ylab("Emissions PM2.5")
 dev.off()
