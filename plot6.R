@@ -37,7 +37,7 @@ sumplot6d <- plot6d %>%
 
 qplot(year, emissyear, data = sumplot6d , color=fips) + geom_line()
 
-png("plot5.png")
+png("plot6.png")
 qplot(year, emissyear, data = sumplot6d , color=fips) + geom_line() +
     ggtitle("Los Angeles 06037 vs. Baltimore 24510") +
     xlab("Year") +
@@ -49,4 +49,4 @@ dev.off()
 ## "06037"). Which city has seen greater changes over time in motor vehicle 
 ## emissions?
 
-## Answer:
+## Answer: Los Angeles have seen greater changes over time in vehicle emissions
