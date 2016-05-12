@@ -40,7 +40,8 @@ png("plot5.png")
 ggplot(sumplot5d, aes(x = year, y = emissyear)) +
     geom_bar(stat = "identity") +
     xlab("Year") +
-    ylab("Emissions PM2.5")
+    ylab("Emissions PM2.5") +
+    ggtitle("Total emissions from motor vehicles in Baltimore")
 dev.off()
 
 ## How have emissions from motor vehicle sources changed from 1999-2008 in

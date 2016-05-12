@@ -29,30 +29,24 @@ scc <- tbl_df(readRDS("Source_Classification_Code.rds"))
 
 nei$SCC <- as.factor(nei$SCC)
 
-plot6d.balt <- subset(nei, fips == 24510 & type == 'ON-ROAD')
+plot6d <- subset(nei, fips == c("24510", "06037") & type == 'ON-ROAD')
 
-plot6d.la <- subset(nei, fips == 24510 & type == 'ON-ROAD')
-
-plot6d.balt$year <- as.factor(plot6d.balt$year)
-sumplot6d.balt <- plot6d.balt %>%
-    group_by(year) %>%
+sumplot6d <- plot6d %>%
+    group_by(year, fips) %>%
     summarise(emissyear = sum(Emissions))
 
-plot6d.la$year <- as.factor(plot6d.la$year)
-sumplot6d.la <- plot6d.la %>%
-    group_by(year) %>%
-    summarise(emissyear = sum(Emissions))
+qplot(year, emissyear, data = sumplot6d , color=fips) + geom_line()
 
 png("plot5.png")
-ggplot(sumplot6d.balt) +
-    geom_line(aes(sumplot6d.balt$year, sumplot6d.balt$emissyear)) +
-    geom_line(aes(sumplot6d.balt$year, sumplot6d.balt$emissyear)) +
+qplot(year, emissyear, data = sumplot6d , color=fips) + geom_line() +
+    ggtitle("Los Angeles 06037 vs. Baltimore 24510") +
     xlab("Year") +
     ylab("Emissions PM2.5")
 dev.off()
 
-## How have emissions from motor vehicle sources changed from 1999-2008 in
-## Baltimore City?
+## Compare emissions from motor vehicle sources in Baltimore City with emissions
+## from motor vehicle sources in Los Angeles County, California (fips =
+## "06037"). Which city has seen greater changes over time in motor vehicle 
+## emissions?
 
-## Answer: The emissions for motor vehicle sources have decreased conciderably
-## in the period from 1999-2008
+## Answer:
